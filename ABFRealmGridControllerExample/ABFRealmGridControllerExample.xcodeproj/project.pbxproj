@@ -1,0 +1,571 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9FA63C087326691EA5395C7C /* libPods-ABFRealmGridControllerExampleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C418968997C4066730847BE3 /* libPods-ABFRealmGridControllerExampleTests.a */; };
+		A02C0D1F1B8CDC93009AD6CA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A02C0D1E1B8CDC93009AD6CA /* main.m */; };
+		A02C0D221B8CDC93009AD6CA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A02C0D211B8CDC93009AD6CA /* AppDelegate.m */; };
+		A02C0D281B8CDC93009AD6CA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A02C0D261B8CDC93009AD6CA /* Main.storyboard */; };
+		A02C0D2A1B8CDC93009AD6CA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A02C0D291B8CDC93009AD6CA /* Images.xcassets */; };
+		A02C0D2D1B8CDC93009AD6CA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A02C0D2B1B8CDC93009AD6CA /* LaunchScreen.xib */; };
+		A02C0D391B8CDC93009AD6CA /* ABFRealmGridControllerExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A02C0D381B8CDC93009AD6CA /* ABFRealmGridControllerExampleTests.m */; };
+		A02C0D451B8CEF94009AD6CA /* ABFRealmGridController.m in Sources */ = {isa = PBXBuildFile; fileRef = A02C0D441B8CEF94009AD6CA /* ABFRealmGridController.m */; };
+		A02C0D531B8D22EA009AD6CA /* MainGridController.m in Sources */ = {isa = PBXBuildFile; fileRef = A02C0D521B8D22EA009AD6CA /* MainGridController.m */; };
+		A02C0D561B8D250E009AD6CA /* MainCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A02C0D551B8D250E009AD6CA /* MainCollectionViewCell.m */; };
+		A0A802591B98B49F002C7FF1 /* NYTStory.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A802581B98B49F002C7FF1 /* NYTStory.m */; };
+		A0A8025F1B98B4C4002C7FF1 /* NYTStoryImage.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A8025E1B98B4C4002C7FF1 /* NYTStoryImage.m */; };
+		DF2BE6AEA5EC1F2153FDF267 /* libPods-ABFRealmGridControllerExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 56500D994E7A1E49F12BAC53 /* libPods-ABFRealmGridControllerExample.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A02C0D331B8CDC93009AD6CA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A02C0D111B8CDC93009AD6CA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A02C0D181B8CDC93009AD6CA;
+			remoteInfo = ABFRealmGridControllerExample;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		56500D994E7A1E49F12BAC53 /* libPods-ABFRealmGridControllerExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ABFRealmGridControllerExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		810D139986798C3FDD543FD7 /* Pods-ABFRealmGridControllerExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ABFRealmGridControllerExampleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ABFRealmGridControllerExampleTests/Pods-ABFRealmGridControllerExampleTests.release.xcconfig"; sourceTree = "<group>"; };
+		A02C0D191B8CDC93009AD6CA /* ABFRealmGridControllerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ABFRealmGridControllerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A02C0D1D1B8CDC93009AD6CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A02C0D1E1B8CDC93009AD6CA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A02C0D201B8CDC93009AD6CA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		A02C0D211B8CDC93009AD6CA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		A02C0D271B8CDC93009AD6CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A02C0D291B8CDC93009AD6CA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		A02C0D2C1B8CDC93009AD6CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		A02C0D321B8CDC93009AD6CA /* ABFRealmGridControllerExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ABFRealmGridControllerExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A02C0D371B8CDC93009AD6CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A02C0D381B8CDC93009AD6CA /* ABFRealmGridControllerExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ABFRealmGridControllerExampleTests.m; sourceTree = "<group>"; };
+		A02C0D431B8CEF94009AD6CA /* ABFRealmGridController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABFRealmGridController.h; sourceTree = "<group>"; };
+		A02C0D441B8CEF94009AD6CA /* ABFRealmGridController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABFRealmGridController.m; sourceTree = "<group>"; };
+		A02C0D511B8D22EA009AD6CA /* MainGridController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainGridController.h; sourceTree = "<group>"; };
+		A02C0D521B8D22EA009AD6CA /* MainGridController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainGridController.m; sourceTree = "<group>"; };
+		A02C0D541B8D250E009AD6CA /* MainCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainCollectionViewCell.h; sourceTree = "<group>"; };
+		A02C0D551B8D250E009AD6CA /* MainCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainCollectionViewCell.m; sourceTree = "<group>"; };
+		A0A802571B98B49F002C7FF1 /* NYTStory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYTStory.h; sourceTree = "<group>"; };
+		A0A802581B98B49F002C7FF1 /* NYTStory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYTStory.m; sourceTree = "<group>"; };
+		A0A8025D1B98B4C4002C7FF1 /* NYTStoryImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYTStoryImage.h; sourceTree = "<group>"; };
+		A0A8025E1B98B4C4002C7FF1 /* NYTStoryImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYTStoryImage.m; sourceTree = "<group>"; };
+		B3CA3BAF400613246CD82D16 /* Pods-ABFRealmGridControllerExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ABFRealmGridControllerExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ABFRealmGridControllerExample/Pods-ABFRealmGridControllerExample.debug.xcconfig"; sourceTree = "<group>"; };
+		C418968997C4066730847BE3 /* libPods-ABFRealmGridControllerExampleTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ABFRealmGridControllerExampleTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C5E3DAB3F2E035A25B348B30 /* Pods-ABFRealmGridControllerExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ABFRealmGridControllerExampleTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ABFRealmGridControllerExampleTests/Pods-ABFRealmGridControllerExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C8F6DAA3B823009095CBAFE1 /* Pods-ABFRealmGridControllerExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ABFRealmGridControllerExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-ABFRealmGridControllerExample/Pods-ABFRealmGridControllerExample.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A02C0D161B8CDC93009AD6CA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF2BE6AEA5EC1F2153FDF267 /* libPods-ABFRealmGridControllerExample.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A02C0D2F1B8CDC93009AD6CA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9FA63C087326691EA5395C7C /* libPods-ABFRealmGridControllerExampleTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		631E1B9539EE9DC33DBD1A57 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				56500D994E7A1E49F12BAC53 /* libPods-ABFRealmGridControllerExample.a */,
+				C418968997C4066730847BE3 /* libPods-ABFRealmGridControllerExampleTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9FF7DD3F572223C3982D0546 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B3CA3BAF400613246CD82D16 /* Pods-ABFRealmGridControllerExample.debug.xcconfig */,
+				C8F6DAA3B823009095CBAFE1 /* Pods-ABFRealmGridControllerExample.release.xcconfig */,
+				C5E3DAB3F2E035A25B348B30 /* Pods-ABFRealmGridControllerExampleTests.debug.xcconfig */,
+				810D139986798C3FDD543FD7 /* Pods-ABFRealmGridControllerExampleTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		A02C0D101B8CDC93009AD6CA = {
+			isa = PBXGroup;
+			children = (
+				A02C0D1B1B8CDC93009AD6CA /* ABFRealmGridControllerExample */,
+				A02C0D351B8CDC93009AD6CA /* ABFRealmGridControllerExampleTests */,
+				A02C0D1A1B8CDC93009AD6CA /* Products */,
+				9FF7DD3F572223C3982D0546 /* Pods */,
+				631E1B9539EE9DC33DBD1A57 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		A02C0D1A1B8CDC93009AD6CA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A02C0D191B8CDC93009AD6CA /* ABFRealmGridControllerExample.app */,
+				A02C0D321B8CDC93009AD6CA /* ABFRealmGridControllerExampleTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A02C0D1B1B8CDC93009AD6CA /* ABFRealmGridControllerExample */ = {
+			isa = PBXGroup;
+			children = (
+				A02C0D421B8CDCA6009AD6CA /* ABFRealmGridController */,
+				A02C0D201B8CDC93009AD6CA /* AppDelegate.h */,
+				A02C0D211B8CDC93009AD6CA /* AppDelegate.m */,
+				A02C0D261B8CDC93009AD6CA /* Main.storyboard */,
+				A02C0D291B8CDC93009AD6CA /* Images.xcassets */,
+				A02C0D2B1B8CDC93009AD6CA /* LaunchScreen.xib */,
+				A02C0D1C1B8CDC93009AD6CA /* Supporting Files */,
+				A02C0D511B8D22EA009AD6CA /* MainGridController.h */,
+				A02C0D521B8D22EA009AD6CA /* MainGridController.m */,
+				A02C0D541B8D250E009AD6CA /* MainCollectionViewCell.h */,
+				A02C0D551B8D250E009AD6CA /* MainCollectionViewCell.m */,
+				A0A802571B98B49F002C7FF1 /* NYTStory.h */,
+				A0A802581B98B49F002C7FF1 /* NYTStory.m */,
+				A0A8025D1B98B4C4002C7FF1 /* NYTStoryImage.h */,
+				A0A8025E1B98B4C4002C7FF1 /* NYTStoryImage.m */,
+			);
+			path = ABFRealmGridControllerExample;
+			sourceTree = "<group>";
+		};
+		A02C0D1C1B8CDC93009AD6CA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A02C0D1D1B8CDC93009AD6CA /* Info.plist */,
+				A02C0D1E1B8CDC93009AD6CA /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A02C0D351B8CDC93009AD6CA /* ABFRealmGridControllerExampleTests */ = {
+			isa = PBXGroup;
+			children = (
+				A02C0D381B8CDC93009AD6CA /* ABFRealmGridControllerExampleTests.m */,
+				A02C0D361B8CDC93009AD6CA /* Supporting Files */,
+			);
+			path = ABFRealmGridControllerExampleTests;
+			sourceTree = "<group>";
+		};
+		A02C0D361B8CDC93009AD6CA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A02C0D371B8CDC93009AD6CA /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A02C0D421B8CDCA6009AD6CA /* ABFRealmGridController */ = {
+			isa = PBXGroup;
+			children = (
+				A02C0D431B8CEF94009AD6CA /* ABFRealmGridController.h */,
+				A02C0D441B8CEF94009AD6CA /* ABFRealmGridController.m */,
+			);
+			name = ABFRealmGridController;
+			path = ../../ABFRealmGridController;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A02C0D181B8CDC93009AD6CA /* ABFRealmGridControllerExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A02C0D3C1B8CDC93009AD6CA /* Build configuration list for PBXNativeTarget "ABFRealmGridControllerExample" */;
+			buildPhases = (
+				9B59886136B97120F5ED64B7 /* Check Pods Manifest.lock */,
+				A02C0D151B8CDC93009AD6CA /* Sources */,
+				A02C0D161B8CDC93009AD6CA /* Frameworks */,
+				A02C0D171B8CDC93009AD6CA /* Resources */,
+				EFD27EC4C369305E20937496 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ABFRealmGridControllerExample;
+			productName = ABFRealmGridControllerExample;
+			productReference = A02C0D191B8CDC93009AD6CA /* ABFRealmGridControllerExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A02C0D311B8CDC93009AD6CA /* ABFRealmGridControllerExampleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A02C0D3F1B8CDC93009AD6CA /* Build configuration list for PBXNativeTarget "ABFRealmGridControllerExampleTests" */;
+			buildPhases = (
+				CC06DABB69C40759DAAFE6F0 /* Check Pods Manifest.lock */,
+				A02C0D2E1B8CDC93009AD6CA /* Sources */,
+				A02C0D2F1B8CDC93009AD6CA /* Frameworks */,
+				A02C0D301B8CDC93009AD6CA /* Resources */,
+				1DF102E0B5ABA0B927B246A5 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A02C0D341B8CDC93009AD6CA /* PBXTargetDependency */,
+			);
+			name = ABFRealmGridControllerExampleTests;
+			productName = ABFRealmGridControllerExampleTests;
+			productReference = A02C0D321B8CDC93009AD6CA /* ABFRealmGridControllerExampleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A02C0D111B8CDC93009AD6CA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0640;
+				ORGANIZATIONNAME = "Adam Fish";
+				TargetAttributes = {
+					A02C0D181B8CDC93009AD6CA = {
+						CreatedOnToolsVersion = 6.4;
+					};
+					A02C0D311B8CDC93009AD6CA = {
+						CreatedOnToolsVersion = 6.4;
+						TestTargetID = A02C0D181B8CDC93009AD6CA;
+					};
+				};
+			};
+			buildConfigurationList = A02C0D141B8CDC93009AD6CA /* Build configuration list for PBXProject "ABFRealmGridControllerExample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A02C0D101B8CDC93009AD6CA;
+			productRefGroup = A02C0D1A1B8CDC93009AD6CA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A02C0D181B8CDC93009AD6CA /* ABFRealmGridControllerExample */,
+				A02C0D311B8CDC93009AD6CA /* ABFRealmGridControllerExampleTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A02C0D171B8CDC93009AD6CA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A02C0D281B8CDC93009AD6CA /* Main.storyboard in Resources */,
+				A02C0D2D1B8CDC93009AD6CA /* LaunchScreen.xib in Resources */,
+				A02C0D2A1B8CDC93009AD6CA /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A02C0D301B8CDC93009AD6CA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1DF102E0B5ABA0B927B246A5 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ABFRealmGridControllerExampleTests/Pods-ABFRealmGridControllerExampleTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9B59886136B97120F5ED64B7 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		CC06DABB69C40759DAAFE6F0 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EFD27EC4C369305E20937496 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ABFRealmGridControllerExample/Pods-ABFRealmGridControllerExample-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A02C0D151B8CDC93009AD6CA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A0A8025F1B98B4C4002C7FF1 /* NYTStoryImage.m in Sources */,
+				A02C0D221B8CDC93009AD6CA /* AppDelegate.m in Sources */,
+				A02C0D1F1B8CDC93009AD6CA /* main.m in Sources */,
+				A02C0D531B8D22EA009AD6CA /* MainGridController.m in Sources */,
+				A02C0D451B8CEF94009AD6CA /* ABFRealmGridController.m in Sources */,
+				A02C0D561B8D250E009AD6CA /* MainCollectionViewCell.m in Sources */,
+				A0A802591B98B49F002C7FF1 /* NYTStory.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A02C0D2E1B8CDC93009AD6CA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A02C0D391B8CDC93009AD6CA /* ABFRealmGridControllerExampleTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A02C0D341B8CDC93009AD6CA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A02C0D181B8CDC93009AD6CA /* ABFRealmGridControllerExample */;
+			targetProxy = A02C0D331B8CDC93009AD6CA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A02C0D261B8CDC93009AD6CA /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A02C0D271B8CDC93009AD6CA /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		A02C0D2B1B8CDC93009AD6CA /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A02C0D2C1B8CDC93009AD6CA /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A02C0D3A1B8CDC93009AD6CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A02C0D3B1B8CDC93009AD6CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A02C0D3D1B8CDC93009AD6CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3CA3BAF400613246CD82D16 /* Pods-ABFRealmGridControllerExample.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = ABFRealmGridControllerExample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		A02C0D3E1B8CDC93009AD6CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C8F6DAA3B823009095CBAFE1 /* Pods-ABFRealmGridControllerExample.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = ABFRealmGridControllerExample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		A02C0D401B8CDC93009AD6CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C5E3DAB3F2E035A25B348B30 /* Pods-ABFRealmGridControllerExampleTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ABFRealmGridControllerExampleTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ABFRealmGridControllerExample.app/ABFRealmGridControllerExample";
+			};
+			name = Debug;
+		};
+		A02C0D411B8CDC93009AD6CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 810D139986798C3FDD543FD7 /* Pods-ABFRealmGridControllerExampleTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ABFRealmGridControllerExampleTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ABFRealmGridControllerExample.app/ABFRealmGridControllerExample";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A02C0D141B8CDC93009AD6CA /* Build configuration list for PBXProject "ABFRealmGridControllerExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A02C0D3A1B8CDC93009AD6CA /* Debug */,
+				A02C0D3B1B8CDC93009AD6CA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A02C0D3C1B8CDC93009AD6CA /* Build configuration list for PBXNativeTarget "ABFRealmGridControllerExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A02C0D3D1B8CDC93009AD6CA /* Debug */,
+				A02C0D3E1B8CDC93009AD6CA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A02C0D3F1B8CDC93009AD6CA /* Build configuration list for PBXNativeTarget "ABFRealmGridControllerExampleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A02C0D401B8CDC93009AD6CA /* Debug */,
+				A02C0D411B8CDC93009AD6CA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A02C0D111B8CDC93009AD6CA /* Project object */;
+}
