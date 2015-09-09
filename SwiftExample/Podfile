@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'SwiftRealmGridController' do
+  pod 'RealmSwift'
+  pod 'SwiftFetchedResultsController'
+end
+
+target 'SwiftRealmGridControllerTests' do
+  pod 'RealmSwift'
+end
+
