@@ -13,7 +13,6 @@
 		A04B4BAD1B9A3723002B721F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A04B4BAC1B9A3723002B721F /* Images.xcassets */; };
 		A04B4BB01B9A3723002B721F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A04B4BAE1B9A3723002B721F /* LaunchScreen.xib */; };
 		A04B4BBC1B9A3723002B721F /* SwiftRealmGridControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04B4BBB1B9A3723002B721F /* SwiftRealmGridControllerTests.swift */; };
-		A04B4BC91B9A37AB002B721F /* ABFRealmGridController.m in Sources */ = {isa = PBXBuildFile; fileRef = A04B4BC81B9A37AB002B721F /* ABFRealmGridController.m */; };
 		A04B4BCC1B9A3805002B721F /* SwiftRealmGridController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04B4BCB1B9A3805002B721F /* SwiftRealmGridController.swift */; };
 		A0B4B7A01B9F624900AD569C /* MainCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B4B79F1B9F624900AD569C /* MainCollectionViewController.swift */; };
 		A0B4B7A21B9F628E00AD569C /* NYTStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B4B7A11B9F628E00AD569C /* NYTStory.swift */; };
@@ -44,8 +43,6 @@
 		A04B4BB51B9A3723002B721F /* SwiftRealmGridControllerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftRealmGridControllerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A04B4BBA1B9A3723002B721F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A04B4BBB1B9A3723002B721F /* SwiftRealmGridControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftRealmGridControllerTests.swift; sourceTree = "<group>"; };
-		A04B4BC71B9A37AB002B721F /* ABFRealmGridController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABFRealmGridController.h; sourceTree = "<group>"; };
-		A04B4BC81B9A37AB002B721F /* ABFRealmGridController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABFRealmGridController.m; sourceTree = "<group>"; };
 		A04B4BCB1B9A3805002B721F /* SwiftRealmGridController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftRealmGridController.swift; sourceTree = "<group>"; };
 		A0B4B79F1B9F624900AD569C /* MainCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCollectionViewController.swift; sourceTree = "<group>"; };
 		A0B4B7A11B9F628E00AD569C /* NYTStory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NYTStory.swift; sourceTree = "<group>"; };
@@ -108,7 +105,6 @@
 			isa = PBXGroup;
 			children = (
 				A04B4BCA1B9A37F6002B721F /* SwiftRealmGridController */,
-				A04B4BC61B9A37AB002B721F /* ABFRealmGridController */,
 				A04B4BA51B9A3723002B721F /* AppDelegate.swift */,
 				A0B4B79F1B9F624900AD569C /* MainCollectionViewController.swift */,
 				A0B4B7A11B9F628E00AD569C /* NYTStory.swift */,
@@ -143,16 +139,6 @@
 				A04B4BBA1B9A3723002B721F /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		A04B4BC61B9A37AB002B721F /* ABFRealmGridController */ = {
-			isa = PBXGroup;
-			children = (
-				A04B4BC71B9A37AB002B721F /* ABFRealmGridController.h */,
-				A04B4BC81B9A37AB002B721F /* ABFRealmGridController.m */,
-			);
-			name = ABFRealmGridController;
-			path = ../../ABFRealmGridController;
 			sourceTree = "<group>";
 		};
 		A04B4BCA1B9A37F6002B721F /* SwiftRealmGridController */ = {
@@ -376,7 +362,6 @@
 				A0B4B7A21B9F628E00AD569C /* NYTStory.swift in Sources */,
 				A0B4B7A01B9F624900AD569C /* MainCollectionViewController.swift in Sources */,
 				A04B4BCC1B9A3805002B721F /* SwiftRealmGridController.swift in Sources */,
-				A04B4BC91B9A37AB002B721F /* ABFRealmGridController.m in Sources */,
 				A04B4BA61B9A3723002B721F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
