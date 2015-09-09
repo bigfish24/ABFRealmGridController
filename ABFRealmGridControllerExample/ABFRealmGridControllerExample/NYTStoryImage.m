@@ -51,10 +51,6 @@
                                                  returningResponse:nil
                                                              error:nil];
     
-    if (!storyImage.imageData) {
-        NSLog(@"NO IMAGE DATA!");
-    }
-    
     return storyImage;
 }
 

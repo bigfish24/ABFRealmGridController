@@ -115,9 +115,6 @@ typedef void(^ABFCollectionViewUpdateBlock)();
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Register cell classes
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
-    
     [self.fetchedResultsController performFetch];
     
     self.viewLoaded = YES;
