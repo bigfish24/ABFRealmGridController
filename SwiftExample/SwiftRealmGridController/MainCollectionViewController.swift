@@ -13,12 +13,14 @@ import TOWebViewController
 
 let reuseIdentifier = "DefaultCell"
 
-class MainCollectionViewController: SwiftRealmGridController {
+class MainCollectionViewController: SwiftRealmGridController, UICollectionViewDelegateFlowLayout {
     
     var dateFormatter: NSDateFormatter!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.entityName = "NYTStory"
 
         // Do any additional setup after loading the view.
         self.sortDescriptors = [SortDescriptor(property: "publishedDate", ascending: false)]
@@ -66,13 +68,26 @@ class MainCollectionViewController: SwiftRealmGridController {
             self.navigationController?.presentViewController(navController, animated: true, completion: nil)
         }
     }
-
-    override func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-
-    override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
+    
+    // MARK: UICollectionViewDelegate
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        let height: CGFloat = 250.0
+        
+        if UIApplication.sharedApplication().statusBarOrientation == UIInterfaceOrientation.Portrait {
+            let columns: CGFloat = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.Pad ? 3.0 : 2.0
+            
+            let width = CGRectGetWidth(self.view.frame) / columns
+            
+            return CGSizeMake(width, height)
+        }
+        else {
+            let columns: CGFloat = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.Pad ? 4.0 : 3.0
+            
+            let width = CGRectGetWidth(self.view.frame) / columns
+            
+            return CGSizeMake(width, height)
+        }
     }
 
     @IBAction func didPressRefreshButton(sender: UIBarButtonItem) {

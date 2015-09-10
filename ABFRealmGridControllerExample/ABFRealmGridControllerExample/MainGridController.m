@@ -13,8 +13,9 @@
 #import <RBQFetchedResultsController/RBQFetchedResultsController.h>
 #import <RBQFetchedResultsController/RLMObject+Notifications.h>
 #import <RBQFetchedResultsController/RLMRealm+Notifications.h>
+#import <TOWebViewController/TOWebViewController.h>
 
-@interface MainGridController ()
+@interface MainGridController () <UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
 
@@ -27,10 +28,7 @@ static NSString * const reuseIdentifier = @"MainCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Do any additional setup after loading the view.
+    self.entityName = @"NYTStory";
     
     self.sortDescriptors = @[[RLMSortDescriptor sortDescriptorWithProperty:@"publishedDate" ascending:NO]];
     
@@ -59,7 +57,7 @@ static NSString * const reuseIdentifier = @"MainCell";
     MainCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
     // Configure the cell
-    NYTStory *story = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    NYTStory *story = [self objectAtIndexPath:indexPath];
     
     cell.titleLabel.text = story.title;
     cell.dateLabel.text = [self.dateFormatter stringFromDate:story.publishedDate];
@@ -71,34 +69,44 @@ static NSString * const reuseIdentifier = @"MainCell";
 
 #pragma mark <UICollectionViewDelegate>
 
-/*
-// Uncomment this method to specify if the specified item should be highlighted during tracking
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-	return YES;
-}
-*/
-
-/*
-// Uncomment this method to specify if the specified item should be selected
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-*/
-
-/*
-// Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return NO;
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    [collectionView deselectItemAtIndexPath:indexPath animated:YES];
+    
+    NYTStory *story = [self objectAtIndexPath:indexPath];
+    
+    TOWebViewController *webController = [[TOWebViewController alloc] initWithURLString:story.urlString];
+    
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:webController];
+    
+    [self.navigationController presentViewController:navController animated:YES completion:nil];
 }
 
-- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	return NO;
+#pragma mark - <UICollectionViewFlowLayoutDelegate>
+
+- (CGSize)collectionView:(UICollectionView *)collectionView
+                  layout:(UICollectionViewLayout *)collectionViewLayout
+  sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    CGFloat height = 250.0;
+    
+    if ([[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationPortrait) {
+        CGFloat columns = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 3.0 : 2.0;
+        
+        CGFloat width = CGRectGetWidth(self.view.frame) / columns;
+        
+        return CGSizeMake(width, height);
+    }
+    else {
+        CGFloat columns = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 4.0 : 3.0;
+        
+        CGFloat width = CGRectGetWidth(self.view.frame) / columns;
+        
+        return CGSizeMake(width, height);
+    }
 }
 
-- (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	
-}
-*/
+#pragma mark - Actions
 
 - (IBAction)didPressRefreshButton:(UIBarButtonItem *)sender
 {

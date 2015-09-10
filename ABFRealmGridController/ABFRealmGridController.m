@@ -115,7 +115,9 @@ typedef void(^ABFCollectionViewUpdateBlock)();
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.fetchedResultsController performFetch];
+    if (self.entityName) {
+        [self.fetchedResultsController performFetch];
+    }
     
     self.viewLoaded = YES;
 }
@@ -177,6 +179,13 @@ typedef void(^ABFCollectionViewUpdateBlock)();
     return [RLMRealm realmWithConfiguration:self.realmConfiguration error:nil];
 }
 
+#pragma mark - Public
+
+- (id)objectAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [self.fetchedResultsController objectAtIndexPath:indexPath];
+}
+
 #pragma mark - Private
 
 - (void)updateFetchedResultsController
@@ -194,20 +203,18 @@ typedef void(^ABFCollectionViewUpdateBlock)();
     }
     else if (self.entityName) {
         
-        typeof(self) __weak weakSelf = self;
-        
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-            RBQFetchRequest *fetchRequest = [RBQFetchRequest fetchRequestWithEntityName:weakSelf.entityName
-                                                                                inRealm:weakSelf.realm
-                                                                              predicate:weakSelf.basePredicate];
+            RBQFetchRequest *fetchRequest = [RBQFetchRequest fetchRequestWithEntityName:self.entityName
+                                                                                inRealm:self.realm
+                                                                              predicate:self.basePredicate];
             
-            [weakSelf.fetchedResultsController updateFetchRequest:fetchRequest
-                                               sectionNameKeyPath:weakSelf.sectionNameKeyPath
-                                                   andPeformFetch:weakSelf.viewLoaded];
+            [self.fetchedResultsController updateFetchRequest:fetchRequest
+                                               sectionNameKeyPath:self.sectionNameKeyPath
+                                                   andPeformFetch:self.viewLoaded];
             
-            if (weakSelf.viewLoaded) {
+            if (self.viewLoaded) {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [weakSelf.collectionView reloadData];
+                    [self.collectionView reloadData];
                 });
             }
         });

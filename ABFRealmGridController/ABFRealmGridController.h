@@ -53,4 +53,15 @@
  */
 @property (readonly, nonatomic) RBQFetchedResultsController *fetchedResultsController;
 
+/**
+ *  Retrieve the RLMObject for a given index path
+ *
+ *  @warning Returned object is not thread-safe.
+ *
+ *  @param indexPath the index path of the object
+ *
+ *  @return RLMObject
+ */
+- (id)objectAtIndexPath:(NSIndexPath *)indexPath;
+
 @end
