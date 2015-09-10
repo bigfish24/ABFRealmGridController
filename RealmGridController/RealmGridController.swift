@@ -1,6 +1,6 @@
 //
-//  SwiftRealmGridController.swift
-//  SwiftRealmGridController
+//  RealmGridController.swift
+//  RealmGridController
 //
 //  Created by Adam Fish on 9/4/15.
 //  Copyright (c) 2015 Adam Fish. All rights reserved.
@@ -12,7 +12,7 @@ import RBQFetchedResultsController
 
 typealias UpdateBlock = () -> Void
 
-public class SwiftRealmGridController: UICollectionViewController, RBQFetchedResultsControllerDelegate {
+public class RealmGridController: UICollectionViewController, RBQFetchedResultsControllerDelegate {
     // MARK: Properties
     
     /// The name of the Realm Object managed by the grid controller
@@ -189,7 +189,7 @@ public class SwiftRealmGridController: UICollectionViewController, RBQFetchedRes
     }
 }
 
-extension SwiftRealmGridController {
+extension RealmGridController {
     public override func viewDidLoad() {
         if self.entityName != nil {
             self.fetchedResultsController.performFetch()
@@ -198,7 +198,7 @@ extension SwiftRealmGridController {
         self.viewLoaded = true
     }
 }
-extension SwiftRealmGridController: UICollectionViewDataSource {
+extension RealmGridController: UICollectionViewDataSource {
     public override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return self.fetchedResultsController.numberOfSections()
     }
@@ -208,7 +208,7 @@ extension SwiftRealmGridController: UICollectionViewDataSource {
     }
 }
 
-extension SwiftRealmGridController: RBQFetchedResultsControllerDelegate {
+extension RealmGridController: RBQFetchedResultsControllerDelegate {
     public func controllerWillChangeContent(controller: RBQFetchedResultsController!) {
         self.updateBlocks = [UpdateBlock]()
     }

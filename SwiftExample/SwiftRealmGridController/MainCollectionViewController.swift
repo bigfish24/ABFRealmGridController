@@ -13,7 +13,7 @@ import TOWebViewController
 
 let reuseIdentifier = "DefaultCell"
 
-class MainCollectionViewController: SwiftRealmGridController, UICollectionViewDelegateFlowLayout {
+class MainCollectionViewController: RealmGridController, UICollectionViewDelegateFlowLayout {
     
     var dateFormatter: NSDateFormatter!
 
@@ -89,6 +89,8 @@ class MainCollectionViewController: SwiftRealmGridController, UICollectionViewDe
             return CGSizeMake(width, height)
         }
     }
+    
+    // MARK: Private
 
     @IBAction func didPressRefreshButton(sender: UIBarButtonItem) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), { () -> Void in
@@ -142,7 +144,10 @@ class MainCollectionViewController: SwiftRealmGridController, UICollectionViewDe
             }
         });
     }
-
+    
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        self.collectionViewLayout.invalidateLayout()
+    }
 }
 
 class MainCollectionViewCell: UICollectionViewCell {

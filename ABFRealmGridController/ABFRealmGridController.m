@@ -127,6 +127,18 @@ typedef void(^ABFCollectionViewUpdateBlock)();
     // Dispose of any resources that can be recreated.
 }
 
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 8000
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    [self.collectionViewLayout invalidateLayout];
+}
+#else
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [self.collectionViewLayout invalidateLayout];
+}
+#endif
+
 #pragma mark - Setters
 
 - (void)setEntityName:(NSString *)entityName
