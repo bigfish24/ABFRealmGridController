@@ -128,13 +128,15 @@ class MainCollectionViewController: RealmGridController, UICollectionViewDelegat
                         return
                     }
                     
-                    if let json = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as? NSDictionary {
+                    if data != nil {
+                        let json = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
+                        
                         if let results = json["results"] as? [NSDictionary] {
                             
                             for storyJSON in results {
                                 if let story = NYTStory.story(storyJSON) {
-                                    Realm().write({ () -> Void in
-                                        Realm().addWithNotification(story, update: true)
+                                    try! Realm().write({ () -> Void in
+                                        try! Realm().addWithNotification(story, update: true)
                                     })
                                 }
                             }

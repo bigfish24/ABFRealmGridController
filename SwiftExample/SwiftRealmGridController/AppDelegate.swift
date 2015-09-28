@@ -18,8 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-        Realm().write { () -> Void in
-            Realm().deleteAll()
+        try! Realm().write { () -> Void in
+            try! Realm().deleteAll()
         }
         
         return true

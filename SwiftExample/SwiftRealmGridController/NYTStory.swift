@@ -23,11 +23,11 @@ class NYTStory: Object {
     
     dynamic var itemType = ""
     
-    dynamic var updatedDate = NSDate.distantPast() as! NSDate
+    dynamic var updatedDate = NSDate.distantPast()
     
-    dynamic var createdDate: NSDate = NSDate.distantPast() as! NSDate
+    dynamic var createdDate: NSDate = NSDate.distantPast()
     
-    dynamic var publishedDate = NSDate.distantPast() as! NSDate
+    dynamic var publishedDate = NSDate.distantPast()
     
     dynamic var materialTypeFacet = ""
     
@@ -40,7 +40,7 @@ class NYTStory: Object {
     }
     
     class func story(json: NSDictionary) -> NYTStory? {
-        var story = NYTStory()
+        let story = NYTStory()
         
         if let section = json["section"] as? String {
             story.section = section
@@ -165,8 +165,8 @@ class NYTStoryImage: Object {
         return NSURL(string: self.urlString)!
     }
     
-    var image: UIImage {
-        return UIImage(data: self.imageData)!
+    var image: UIImage? {
+        return UIImage(data: self.imageData)
     }
     
     override static func ignoredProperties() -> [String] {
@@ -174,7 +174,7 @@ class NYTStoryImage: Object {
     }
     
     class func storyImage(json: NSDictionary) -> NYTStoryImage? {
-        var storyImage = NYTStoryImage()
+        let storyImage = NYTStoryImage()
         
         if let property = json["url"] as? String {
             storyImage.urlString = property
@@ -210,7 +210,7 @@ class NYTStoryImage: Object {
         
         let imageRequest = NSURLRequest(URL: storyImage.url)
         
-        if let imageData = NSURLConnection.sendSynchronousRequest(imageRequest, returningResponse: nil, error: nil) {
+        if let imageData = try? NSURLConnection.sendSynchronousRequest(imageRequest, returningResponse: nil) {
             storyImage.imageData = imageData
         }
 

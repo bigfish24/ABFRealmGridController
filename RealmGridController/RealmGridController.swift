@@ -66,7 +66,7 @@ public class RealmGridController: UICollectionViewController, RBQFetchedResultsC
     /// The Realm in which the given entity resides in
     public var realm: Realm? {
         if let configuration = self.realmConfiguration {
-            return Realm(configuration: configuration, error: nil)
+            return try! Realm(configuration: configuration)
         }
         
         return nil
@@ -93,7 +93,7 @@ public class RealmGridController: UICollectionViewController, RBQFetchedResultsC
     
     // MARK: Initializers
     
-    required public init(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         baseInit()
@@ -130,7 +130,7 @@ public class RealmGridController: UICollectionViewController, RBQFetchedResultsC
         if let realmConfiguration = self.realmConfiguration {
             let configuration = self.toRLMConfiguration(realmConfiguration)
             
-            return RLMRealm(configuration: configuration, error: nil)
+            return try! RLMRealm(configuration: configuration)
         }
         
         return nil
@@ -146,25 +146,21 @@ public class RealmGridController: UICollectionViewController, RBQFetchedResultsC
             }
         }
         else if self.entityName != nil {
-            
-            
-            if let config = self.realmConfiguration {
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), { () -> Void in
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), { () -> Void in
+                
+                if let realm = self.rlmRealm {
                     
-                    if let realm = self.rlmRealm {
-                        
-                        let fetchRequest = RBQFetchRequest(entityName: self.entityName!, inRealm: realm, predicate: self.basePredicate)
-                        
-                        self.fetchedResultsController.updateFetchRequest(fetchRequest, sectionNameKeyPath: self.sectionNameKeyPath, andPeformFetch: self.viewLoaded)
-                        
-                        if self.viewLoaded {
-                            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                                self.collectionView?.reloadData()
-                            })
-                        }
+                    let fetchRequest = RBQFetchRequest(entityName: self.entityName!, inRealm: realm, predicate: self.basePredicate)
+                    
+                    self.fetchedResultsController.updateFetchRequest(fetchRequest, sectionNameKeyPath: self.sectionNameKeyPath, andPeformFetch: self.viewLoaded)
+                    
+                    if self.viewLoaded {
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            self.collectionView?.reloadData()
+                        })
                     }
-                })
-            }
+                }
+            })
         }
     }
     
@@ -198,7 +194,7 @@ extension RealmGridController {
         self.viewLoaded = true
     }
 }
-extension RealmGridController: UICollectionViewDataSource {
+extension RealmGridController {
     public override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return self.fetchedResultsController.numberOfSections()
     }
@@ -208,7 +204,7 @@ extension RealmGridController: UICollectionViewDataSource {
     }
 }
 
-extension RealmGridController: RBQFetchedResultsControllerDelegate {
+extension RealmGridController {
     public func controllerWillChangeContent(controller: RBQFetchedResultsController!) {
         self.updateBlocks = [UpdateBlock]()
     }
