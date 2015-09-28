@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "RealmGridController"
-  s.version      = "1.1"
+  s.version      = "1.2"
   s.summary      = "Swift UICollectionViewController subclass that binds data in Realm"
   s.description  = <<-DESC
 Swift UICollectionViewController subclass that adds data binding support for a Realm object model.
@@ -13,6 +13,6 @@ Swift UICollectionViewController subclass that adds data binding support for a R
   s.source_files  = "RealmGridController/*.{swift}"
   s.requires_arc = true
   s.dependency "SwiftFetchedResultsController", ">= 2.0"
-  s.dependency "RealmSwift", ">= 0.95"
+  s.dependency "RealmSwift", ">= 0.95.1"
 
 end
