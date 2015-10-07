@@ -115,11 +115,9 @@ typedef void(^ABFCollectionViewUpdateBlock)();
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if (self.entityName) {
-        [self.fetchedResultsController performFetch];
-    }
-    
     self.viewLoaded = YES;
+    
+    [self updateFetchedResultsController];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -200,35 +198,58 @@ typedef void(^ABFCollectionViewUpdateBlock)();
 
 #pragma mark - Private
 
+
 - (void)updateFetchedResultsController
 {
-    if (self.entityName &&
-        !self.viewLoaded) {
+    @synchronized(self) {
+        RBQFetchRequest *fetchRequest = [self tableFetchRequest:self.entityName
+                                                          realm:self.realm
+                                                      predicate:self.basePredicate];
         
-        RBQFetchRequest *fetchRequest = [RBQFetchRequest fetchRequestWithEntityName:self.entityName
-                                                                            inRealm:self.realm
-                                                                          predicate:self.basePredicate];
-        
-        [self.fetchedResultsController updateFetchRequest:fetchRequest
-                                       sectionNameKeyPath:self.sectionNameKeyPath
-                                           andPeformFetch:NO];
-    }
-    else if (self.entityName) {
-        
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-            RBQFetchRequest *fetchRequest = [RBQFetchRequest fetchRequestWithEntityName:self.entityName
-                                                                                inRealm:self.realm
-                                                                              predicate:self.basePredicate];
+        if (fetchRequest) {
             
             [self.fetchedResultsController updateFetchRequest:fetchRequest
-                                               sectionNameKeyPath:self.sectionNameKeyPath
-                                                   andPeformFetch:self.viewLoaded];
+                                           sectionNameKeyPath:self.sectionNameKeyPath
+                                               andPeformFetch:YES];
             
             if (self.viewLoaded) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.collectionView reloadData];
-                });
+                typeof(self) __weak weakSelf = self;
+                
+                [self runOnMainThread:^{
+                    [weakSelf.collectionView reloadData];
+                }];
             }
+        }
+    }
+}
+
+- (RBQFetchRequest *)tableFetchRequest:(NSString *)entityName
+                                 realm:(RLMRealm *)realm
+                             predicate:(NSPredicate *)predicate
+{
+    if (entityName &&
+        realm) {
+        
+        RBQFetchRequest *fetchRequest = [RBQFetchRequest fetchRequestWithEntityName:entityName
+                                                                            inRealm:realm
+                                                                          predicate:predicate];
+        
+        fetchRequest.sortDescriptors = self.sortDescriptors;
+        
+        return fetchRequest;
+    }
+    
+    return nil;
+}
+
+- (void)runOnMainThread:(void (^)())block
+{
+    if ([NSThread isMainThread]) {
+        block();
+    }
+    else {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            block();
         });
     }
 }

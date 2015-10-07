@@ -154,13 +154,12 @@ static NSString * const reuseIdentifier = @"MainCell";
                                            NYTStory *story = [NYTStory storyWithJSON:storyJSON];
                                            
                                            if (story) {
-                                               [[RLMRealm defaultRealm] transactionWithBlock:^{
-                                                   [[RLMRealm defaultRealm] addOrUpdateObjectWithNotification:story];
-                                               }];
+                                               [[RLMRealm defaultRealm] beginWriteTransaction];
+                                               [[RLMRealm defaultRealm] addOrUpdateObjectWithNotification:story];
+                                               [[RLMRealm defaultRealm] commitWriteTransaction];
                                            }
                                        }
                                    }];
-            
         }
     });
 }

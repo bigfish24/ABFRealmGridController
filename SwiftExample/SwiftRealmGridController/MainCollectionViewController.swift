@@ -133,11 +133,12 @@ class MainCollectionViewController: RealmGridController, UICollectionViewDelegat
                         
                         if let results = json["results"] as? [NSDictionary] {
                             
+                            
                             for storyJSON in results {
                                 if let story = NYTStory.story(storyJSON) {
-                                    try! Realm().write({ () -> Void in
-                                        try! Realm().addWithNotification(story, update: true)
-                                    })
+                                    try! Realm().beginWrite()
+                                    try! Realm().addWithNotification(story, update: true)
+                                    try! Realm().commitWrite()
                                 }
                             }
                         }
