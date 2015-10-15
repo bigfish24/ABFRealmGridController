@@ -9,6 +9,10 @@
 #import <Realm/Realm.h>
 #import <UIKit/UIKit.h>
 
+@class NYTStory, NYTStoryImage;
+
+typedef void(^ABFImageCompletionBlock)(UIImage *image);
+
 @interface NYTStoryImage : RLMObject
 
 // Model
@@ -29,15 +33,10 @@
 
 @property NSString *copyright;
 
-@property NSData *imageData;
-
 // Formatted Accessors
 
 @property (nonatomic, readonly) NSURL *url;
 
-@property (nonatomic, readonly) UIImage *image;
-
-// Sends synchronous request for image data
 + (instancetype)storyImageFromJSON:(NSDictionary *)json;
 
 @end

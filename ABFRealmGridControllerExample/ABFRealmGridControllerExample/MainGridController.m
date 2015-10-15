@@ -14,6 +14,7 @@
 #import <RBQFetchedResultsController/RLMObject+Notifications.h>
 #import <RBQFetchedResultsController/RLMRealm+Notifications.h>
 #import <TOWebViewController/TOWebViewController.h>
+#import <Haneke/Haneke.h>
 
 @interface MainGridController () <UICollectionViewDelegateFlowLayout>
 
@@ -41,16 +42,6 @@ static NSString * const reuseIdentifier = @"MainCell";
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 #pragma mark <UICollectionViewDataSource>
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -62,7 +53,9 @@ static NSString * const reuseIdentifier = @"MainCell";
     cell.titleLabel.text = story.title;
     cell.dateLabel.text = [self.dateFormatter stringFromDate:story.publishedDate];
     cell.excerptLabel.text = story.abstract;
-    cell.imageView.image = story.storyImage.image;
+    
+    // Use Haneke image caching
+    [cell.imageView hnk_setImageFromURL:story.storyImage.url];
     
     return cell;
 }
@@ -150,15 +143,15 @@ static NSString * const reuseIdentifier = @"MainCell";
                                        
                                        NSArray *results = json[@"results"];
                                        
+                                       [[RLMRealm defaultRealm] beginWriteTransaction];
                                        for (NSDictionary *storyJSON in results) {
                                            NYTStory *story = [NYTStory storyWithJSON:storyJSON];
                                            
                                            if (story) {
-                                               [[RLMRealm defaultRealm] beginWriteTransaction];
                                                [[RLMRealm defaultRealm] addOrUpdateObjectWithNotification:story];
-                                               [[RLMRealm defaultRealm] commitWriteTransaction];
                                            }
                                        }
+                                       [[RLMRealm defaultRealm] commitWriteTransaction];
                                    }];
         }
     });

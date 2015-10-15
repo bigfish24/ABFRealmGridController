@@ -7,6 +7,9 @@
 //
 
 #import "NYTStoryImage.h"
+#import "NYTStory.h"
+
+#import <RBQFetchedResultsController/RBQRealmNotificationManager.h>
 
 @implementation NYTStoryImage
 
@@ -45,21 +48,10 @@
     storyImage.caption = json[@"caption"];
     storyImage.copyright = json[@"copyright"];
     
-    NSURLRequest *imageRequest = [NSURLRequest requestWithURL:storyImage.url];
-    
-    storyImage.imageData = [NSURLConnection sendSynchronousRequest:imageRequest
-                                                 returningResponse:nil
-                                                             error:nil];
-    
     return storyImage;
 }
 
 #pragma mark - Getters
-
-- (UIImage *)image
-{
-    return [UIImage imageWithData:self.imageData];
-}
 
 - (NSURL *)url
 {

@@ -192,6 +192,7 @@
 				A02C0D161B8CDC93009AD6CA /* Frameworks */,
 				A02C0D171B8CDC93009AD6CA /* Resources */,
 				EFD27EC4C369305E20937496 /* Copy Pods Resources */,
+				0DC3588C5450049A34501C54 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -211,6 +212,7 @@
 				A02C0D2F1B8CDC93009AD6CA /* Frameworks */,
 				A02C0D301B8CDC93009AD6CA /* Resources */,
 				1DF102E0B5ABA0B927B246A5 /* Copy Pods Resources */,
+				C332694F780143B38B5F1C0A /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -280,6 +282,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0DC3588C5450049A34501C54 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ABFRealmGridControllerExample/Pods-ABFRealmGridControllerExample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		1DF102E0B5ABA0B927B246A5 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -308,6 +325,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C332694F780143B38B5F1C0A /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ABFRealmGridControllerExampleTests/Pods-ABFRealmGridControllerExampleTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CC06DABB69C40759DAAFE6F0 /* Check Pods Manifest.lock */ = {

@@ -9,9 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @interface MainCollectionViewCell : UICollectionViewCell
+
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
+
 @property (strong, nonatomic) IBOutlet UILabel *dateLabel;
+
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
+
 @property (strong, nonatomic) IBOutlet UILabel *excerptLabel;
 
 @end

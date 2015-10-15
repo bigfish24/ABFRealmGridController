@@ -135,6 +135,7 @@ geoFacet = _geoFacet;
             
             NYTStoryImage *storyImage = [NYTStoryImage storyImageFromJSON:imageDict];
             
+            // Create references
             story.storyImage = storyImage;
             
             return story;
