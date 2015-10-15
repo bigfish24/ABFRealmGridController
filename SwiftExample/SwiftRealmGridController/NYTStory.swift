@@ -159,14 +159,8 @@ class NYTStoryImage: Object {
     
     dynamic var copyright = ""
     
-    dynamic var imageData = NSData()
-    
     var url: NSURL {
         return NSURL(string: self.urlString)!
-    }
-    
-    var image: UIImage? {
-        return UIImage(data: self.imageData)
     }
     
     override static func ignoredProperties() -> [String] {
@@ -206,12 +200,6 @@ class NYTStoryImage: Object {
         
         if let property = json["copyright"] as? String {
             storyImage.copyright = property
-        }
-        
-        let imageRequest = NSURLRequest(URL: storyImage.url)
-        
-        if let imageData = try? NSURLConnection.sendSynchronousRequest(imageRequest, returningResponse: nil) {
-            storyImage.imageData = imageData
         }
 
         return storyImage;

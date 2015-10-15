@@ -10,6 +10,7 @@ import UIKit
 import RealmSwift
 import SwiftFetchedResultsController
 import TOWebViewController
+import Haneke
 
 let reuseIdentifier = "DefaultCell"
 
@@ -40,15 +41,18 @@ class MainCollectionViewController: RealmGridController, UICollectionViewDelegat
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! MainCollectionViewCell
     
         // Configure the cell
-        let anObject = self.objectAtIndexPath(NYTStory.self, indexPath: indexPath)
+        let aStory = self.objectAtIndexPath(NYTStory.self, indexPath: indexPath)
         
-        cell.titleLabel.text = anObject?.title
-        cell.excerptLabel.text = anObject?.abstract
+        cell.titleLabel.text = aStory?.title
+        cell.excerptLabel.text = aStory?.abstract
         
-        if let date = anObject?.publishedDate {
+        if let date = aStory?.publishedDate {
             cell.dateLabel.text = self.dateFormatter.stringFromDate(date)
         }
-        cell.imageView.image = anObject?.storyImage?.image
+        
+        if let imageURL = aStory?.storyImage?.url {
+            cell.imageView.hnk_setImageFromURL(imageURL)
+        }
     
         return cell
     }
@@ -133,14 +137,13 @@ class MainCollectionViewController: RealmGridController, UICollectionViewDelegat
                         
                         if let results = json["results"] as? [NSDictionary] {
                             
-                            
+                            try! Realm().beginWrite()
                             for storyJSON in results {
                                 if let story = NYTStory.story(storyJSON) {
-                                    try! Realm().beginWrite()
                                     try! Realm().addWithNotification(story, update: true)
-                                    try! Realm().commitWrite()
                                 }
                             }
+                            try! Realm().commitWrite()
                         }
                     }
                 })
