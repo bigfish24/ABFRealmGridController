@@ -8,38 +8,38 @@
 
 import RealmSwift
 
-class NYTStory: Object {
-    dynamic var section = ""
+public class NYTStory: Object {
+    public dynamic var section = ""
     
-    dynamic var subsection = ""
+    public dynamic var subsection = ""
     
-    dynamic var title = ""
+    public dynamic var title = ""
     
-    dynamic var abstract = ""
+    public dynamic var abstract = ""
     
-    dynamic var urlString = ""
+    public dynamic var urlString = ""
     
-    dynamic var byline = ""
+    public dynamic var byline = ""
     
-    dynamic var itemType = ""
+    public dynamic var itemType = ""
     
-    dynamic var updatedDate = NSDate.distantPast()
+    public dynamic var updatedDate = NSDate.distantPast()
     
-    dynamic var createdDate: NSDate = NSDate.distantPast()
+    public dynamic var createdDate: NSDate = NSDate.distantPast()
     
-    dynamic var publishedDate = NSDate.distantPast()
+    public dynamic var publishedDate = NSDate.distantPast()
     
-    dynamic var materialTypeFacet = ""
+    public dynamic var materialTypeFacet = ""
     
-    dynamic var kicker = ""
+    public dynamic var kicker = ""
     
-    dynamic var storyImage: NYTStoryImage?
+    public dynamic var storyImage: NYTStoryImage?
     
-    var url: NSURL {
+    public var url: NSURL {
         return NSURL(string: self.urlString)!
     }
     
-    class func story(json: NSDictionary) -> NYTStory? {
+    public class func story(json: NSDictionary) -> NYTStory? {
         let story = NYTStory()
         
         if let section = json["section"] as? String {
@@ -64,7 +64,7 @@ class NYTStory: Object {
             story.itemType = itemType
         }
         
-        let dateFormatter = NYTStory.dateFormatter()
+        let dateFormatter = self.aDateFormatter
         
         if let updatedDateString = json["updated_date"] as? String {
             
@@ -105,9 +105,21 @@ class NYTStory: Object {
         if let imageArray = json["multimedia"] as? NSArray {
             if imageArray.count > 0 {
                 
-                if let imageDict = imageArray[1] as? NSDictionary {
+                var imageDict: NSDictionary? = nil;
+                
+                if imageArray.count > 1 {
+                    if let dict = imageArray[1] as? NSDictionary {
+                        imageDict = dict
+                    }
+                }
+                else if imageArray.count > 0 {
+                    if let dict = imageArray[0] as? NSDictionary {
+                        imageDict = dict
+                    }
+                }
+                if let dict = imageDict {
                     
-                    story.storyImage = NYTStoryImage.storyImage(imageDict)
+                    story.storyImage = NYTStoryImage.storyImage(dict)
                     
                     return story;
                 }
@@ -117,12 +129,82 @@ class NYTStory: Object {
         return nil;
     }
     
-    class func dateFormatter() -> NSDateFormatter {
+    public class func loadLatestStories(intoRealm realm: Realm, withAPIKey apiKey: String) {
+        let config = realm.configuration
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), { () -> Void in
+            let nytSections =
+            [
+                "home",
+                "world",
+                "national",
+                "politics",
+                "nyregion",
+                "business",
+                "opinion",
+                "technology",
+                "science",
+                "health",
+                "sports",
+                "arts",
+                "fashion",
+                "dining",
+                "travel",
+                "magazine",
+                "realestate"
+            ]
+            
+            for section in nytSections {
+                let urlString = "http://api.nytimes.com/svc/topstories/v1/\(section).json?api-key=\(apiKey)"
+                
+                let url = NSURL(string: urlString)!
+                
+                let topStoriesRequest = NSURLRequest(URL: url)
+                
+                NSURLConnection.sendAsynchronousRequest(topStoriesRequest, queue: NSOperationQueue(), completionHandler: { (response, data, connectionError) -> Void in
+                    
+                    if connectionError != nil {
+                        return
+                    }
+                    
+                    if data != nil {
+                        let json = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
+                        
+                        if let results = json["results"] as? [NSDictionary] {
+                            
+                            let aRealm = try! Realm(configuration: config)
+                            
+                            aRealm.beginWrite()
+                            
+                            for storyJSON in results {
+                                if let story = NYTStory.story(storyJSON) {
+                                    aRealm.addWithNotification(story, update: true)
+                                }
+                            }
+                            try! aRealm.commitWrite()
+                        }
+                    }
+                })
+            }
+        });
+    }
+    
+    public class func stringFromDate(date: NSDate) -> String {
+        return self.stringFormatter.stringFromDate(date)
+    }
+    
+    private static var stringFormatter: NSDateFormatter = {
+       let formatter = NSDateFormatter()
+        formatter.dateStyle = NSDateFormatterStyle.ShortStyle
+        return formatter
+    }()
+    
+    private static var aDateFormatter: NSDateFormatter = {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZ"
         
         return dateFormatter
-    }
+    }()
     
     private class func cleanDateString(dateString: String) -> String {
         let string = dateString as NSString
@@ -132,42 +214,42 @@ class NYTStory: Object {
         return cleanedString
     }
 
-    override static func ignoredProperties() -> [String] {
+    override public static func ignoredProperties() -> [String] {
         return ["url"]
     }
     
-    override static func primaryKey() -> String? {
+    override public static func primaryKey() -> String? {
         return "title"
     }
 }
 
-class NYTStoryImage: Object {
+public class NYTStoryImage: Object {
     
-    dynamic var urlString = ""
+    public dynamic var urlString = ""
     
-    dynamic var format = ""
+    public dynamic var format = ""
     
-    dynamic var height: Double = 0
+    public dynamic var height: Double = 0
     
-    dynamic var width: Double = 0
+    public dynamic var width: Double = 0
     
-    dynamic var type = ""
+    public dynamic var type = ""
     
-    dynamic var subtype = ""
+    public dynamic var subtype = ""
     
-    dynamic var caption = ""
+    public dynamic var caption = ""
     
-    dynamic var copyright = ""
+    public dynamic var copyright = ""
     
-    var url: NSURL {
+    public var url: NSURL {
         return NSURL(string: self.urlString)!
     }
     
-    override static func ignoredProperties() -> [String] {
+    override public static func ignoredProperties() -> [String] {
         return ["url","image"]
     }
     
-    class func storyImage(json: NSDictionary) -> NYTStoryImage? {
+    public class func storyImage(json: NSDictionary) -> NYTStoryImage? {
         let storyImage = NYTStoryImage()
         
         if let property = json["url"] as? String {

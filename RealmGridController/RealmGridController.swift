@@ -223,11 +223,19 @@ public class RealmGridController: UICollectionViewController, RBQFetchedResultsC
 
 extension RealmGridController {
     public override func viewDidLoad() {
+        super.viewDidLoad()
+        
         if self.entityName != nil {
             self.fetchedResultsController.performFetch()
         }
         
         self.viewLoaded = true
+    }
+    
+    override public func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+        
+        self.collectionViewLayout.invalidateLayout()
     }
 }
 extension RealmGridController {

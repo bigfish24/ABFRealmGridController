@@ -8,11 +8,15 @@
 
 #import "NYTStory.h"
 
+#import <RBQFetchedResultsController/RLMRealm+Notifications.h>
+
 @implementation NYTStory
 @synthesize desFacet = _desFacet,
 orgFacet = _orgFacet,
 perFacet = _perFacet,
 geoFacet = _geoFacet;
+
+#pragma mark - RLMObject
 
 // Specify default values for properties
 
@@ -51,6 +55,74 @@ geoFacet = _geoFacet;
              @"orgFacet",
              @"perFacet",
              @"geoFacet"];
+}
+
+#pragma mark - Public Class
+
++ (void)loadLatestStoriesIntoRealm:(RLMRealm *)realm
+                        withAPIKey:(NSString *)apiKey
+{
+    // Grab config so we can open new instance across threads
+    RLMRealmConfiguration *config = realm.configuration;
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSArray *nytSections = @[@"home",
+                                 @"world",
+                                 @"national",
+                                 @"politics",
+                                 @"nyregion",
+                                 @"business",
+                                 @"opinion",
+                                 @"technology",
+                                 @"science",
+                                 @"health",
+                                 @"sports",
+                                 @"arts",
+                                 @"fashion",
+                                 @"dining",
+                                 @"travel",
+                                 @"magazine",
+                                 @"realestate",
+                                 ];
+        
+        for (NSString *section in nytSections) {
+            NSString *urlString =
+            [NSString stringWithFormat:@"http://api.nytimes.com/svc/topstories/v1/%@.json?api-key=%@",section,apiKey];
+            
+            NSURL *topStoryURL = [NSURL URLWithString:urlString];
+            
+            NSURLRequest *topStoriesRequest = [NSURLRequest requestWithURL:topStoryURL];
+            
+            [NSURLConnection sendAsynchronousRequest:topStoriesRequest
+                                               queue:[[NSOperationQueue alloc] init]
+                                   completionHandler:^(NSURLResponse *response,
+                                                       NSData *data,
+                                                       NSError *connectionError) {
+                                       if (connectionError) {
+                                           return;
+                                       }
+                                       
+                                       NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data
+                                                                                            options:0
+                                                                                              error:nil];
+                                       
+                                       NSArray *results = json[@"results"];
+                                       
+                                       RLMRealm *aRealm = [RLMRealm realmWithConfiguration:config
+                                                                                     error:nil];
+                                       
+                                       [aRealm beginWriteTransaction];
+                                       for (NSDictionary *storyJSON in results) {
+                                           NYTStory *story = [NYTStory storyWithJSON:storyJSON];
+                                           
+                                           if (story) {
+                                               [aRealm addOrUpdateObjectWithNotification:story];
+                                           }
+                                       }
+                                       [aRealm commitWriteTransaction];
+                                   }];
+        }
+    });
 }
 
 + (instancetype)storyWithJSON:(NSDictionary *)json
@@ -131,26 +203,55 @@ geoFacet = _geoFacet;
     if ([imageArray isKindOfClass:[NSArray class]]) {
         if (imageArray.count > 0) {
            
-            NSDictionary *imageDict = imageArray[1];
+            NSDictionary *imageDict = nil;
             
-            NYTStoryImage *storyImage = [NYTStoryImage storyImageFromJSON:imageDict];
+            if (imageArray.count) {
+                if (imageArray.count > 1) {
+                    imageDict = imageArray[1];
+                }
+                else {
+                    imageDict = imageArray[0];
+                }
+            }
             
-            // Create references
-            story.storyImage = storyImage;
+            if (imageDict) {
+                NYTStoryImage *storyImage = [NYTStoryImage storyImageFromJSON:imageDict];
+                
+                // Create references
+                story.storyImage = storyImage;
+                
+                return story;
+            }
             
-            return story;
+            return nil;
         }
     }
     
     return nil;
 }
 
+static NSDateFormatter *stringFormatter;
++ (NSString *)stringFromDate:(NSDate *)date
+{
+    if (!stringFormatter) {
+        stringFormatter = [[NSDateFormatter alloc] init];
+        stringFormatter.dateStyle = NSDateFormatterShortStyle;
+    }
+    
+    return [stringFormatter stringFromDate:date];
+}
+
+#pragma mark - Private Class
+
+static NSDateFormatter *aDateFormatter;
 + (NSDateFormatter *)dateFormatter
 {
-    NSDateFormatter *dateformatter = [[NSDateFormatter alloc] init];
-    [dateformatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZ"];
+    if (!aDateFormatter) {
+        aDateFormatter = [[NSDateFormatter alloc] init];
+        [aDateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZ"];
+    }
     
-    return dateformatter;
+    return aDateFormatter;
 }
 
 + (NSString *)cleanDateString:(NSString *)dateString

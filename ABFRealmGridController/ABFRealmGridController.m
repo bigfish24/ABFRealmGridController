@@ -128,11 +128,15 @@ typedef void(^ABFCollectionViewUpdateBlock)();
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= 8000
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
 {
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    
     [self.collectionViewLayout invalidateLayout];
 }
 #else
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
+    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    
     [self.collectionViewLayout invalidateLayout];
 }
 #endif

@@ -15,8 +15,6 @@ import Haneke
 let reuseIdentifier = "DefaultCell"
 
 class MainCollectionViewController: RealmGridController, UICollectionViewDelegateFlowLayout {
-    
-    var dateFormatter: NSDateFormatter!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,9 +23,6 @@ class MainCollectionViewController: RealmGridController, UICollectionViewDelegat
 
         // Do any additional setup after loading the view.
         self.sortDescriptors = [SortDescriptor(property: "publishedDate", ascending: false)]
-        
-        self.dateFormatter = NSDateFormatter()
-        self.dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,7 +42,7 @@ class MainCollectionViewController: RealmGridController, UICollectionViewDelegat
         cell.excerptLabel.text = aStory?.abstract
         
         if let date = aStory?.publishedDate {
-            cell.dateLabel.text = self.dateFormatter.stringFromDate(date)
+            cell.dateLabel.text = NYTStory.stringFromDate(date)
         }
         
         if let imageURL = aStory?.storyImage?.url {
@@ -97,62 +92,7 @@ class MainCollectionViewController: RealmGridController, UICollectionViewDelegat
     // MARK: Private
 
     @IBAction func didPressRefreshButton(sender: UIBarButtonItem) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), { () -> Void in
-            let nytSections =
-            [
-                "home",
-                "world",
-                "national",
-                "politics",
-                "nyregion",
-                "business",
-                "opinion",
-                "technology",
-                "science",
-                "health",
-                "sports",
-                "arts",
-                "fashion",
-                "dining",
-                "travel",
-                "magazine",
-                "realestate"
-            ]
-            
-            for section in nytSections {
-                let urlString = "http://api.nytimes.com/svc/topstories/v1/\(section).json?api-key=388ce6e70d2a8e825757af7a0a67c397:13:59285541"
-                
-                let url = NSURL(string: urlString)!
-                
-                let topStoriesRequest = NSURLRequest(URL: url)
-                
-                NSURLConnection.sendAsynchronousRequest(topStoriesRequest, queue: NSOperationQueue(), completionHandler: { (response, data, connectionError) -> Void in
-                    
-                    if connectionError != nil {
-                        return
-                    }
-                    
-                    if data != nil {
-                        let json = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
-                        
-                        if let results = json["results"] as? [NSDictionary] {
-                            
-                            try! Realm().beginWrite()
-                            for storyJSON in results {
-                                if let story = NYTStory.story(storyJSON) {
-                                    try! Realm().addWithNotification(story, update: true)
-                                }
-                            }
-                            try! Realm().commitWrite()
-                        }
-                    }
-                })
-            }
-        });
-    }
-    
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        self.collectionViewLayout.invalidateLayout()
+        NYTStory.loadLatestStories(intoRealm: try! Realm(), withAPIKey: "388ce6e70d2a8e825757af7a0a67c397:13:59285541")
     }
 }
 

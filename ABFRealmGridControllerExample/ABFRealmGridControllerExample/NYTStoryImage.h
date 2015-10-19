@@ -9,10 +9,6 @@
 #import <Realm/Realm.h>
 #import <UIKit/UIKit.h>
 
-@class NYTStory, NYTStoryImage;
-
-typedef void(^ABFImageCompletionBlock)(UIImage *image);
-
 @interface NYTStoryImage : RLMObject
 
 // Model

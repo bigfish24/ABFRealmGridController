@@ -10,15 +10,10 @@
 #import "MainCollectionViewCell.h"
 #import "NYTStory.h"
 
-#import <RBQFetchedResultsController/RBQFetchedResultsController.h>
-#import <RBQFetchedResultsController/RLMObject+Notifications.h>
-#import <RBQFetchedResultsController/RLMRealm+Notifications.h>
 #import <TOWebViewController/TOWebViewController.h>
 #import <Haneke/Haneke.h>
 
-@interface MainGridController () <UICollectionViewDelegateFlowLayout>
-
-@property (nonatomic, strong) NSDateFormatter *dateFormatter;
+@interface MainGridController ()
 
 @end
 
@@ -32,9 +27,6 @@ static NSString * const reuseIdentifier = @"MainCell";
     self.entityName = @"NYTStory";
     
     self.sortDescriptors = @[[RLMSortDescriptor sortDescriptorWithProperty:@"publishedDate" ascending:NO]];
-    
-    self.dateFormatter = [[NSDateFormatter alloc] init];
-    self.dateFormatter.dateStyle = NSDateFormatterShortStyle;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -44,14 +36,17 @@ static NSString * const reuseIdentifier = @"MainCell";
 
 #pragma mark <UICollectionViewDataSource>
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    MainCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
+                  cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    MainCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier
+                                                                             forIndexPath:indexPath];
     
     // Configure the cell
     NYTStory *story = [self objectAtIndexPath:indexPath];
     
     cell.titleLabel.text = story.title;
-    cell.dateLabel.text = [self.dateFormatter stringFromDate:story.publishedDate];
+    cell.dateLabel.text = [NYTStory stringFromDate:story.publishedDate];
     cell.excerptLabel.text = story.abstract;
     
     // Use Haneke image caching
@@ -103,58 +98,8 @@ static NSString * const reuseIdentifier = @"MainCell";
 
 - (IBAction)didPressRefreshButton:(UIBarButtonItem *)sender
 {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        NSArray *nytSections = @[@"home",
-                                 @"world",
-                                 @"national",
-                                 @"politics",
-                                 @"nyregion",
-                                 @"business",
-                                 @"opinion",
-                                 @"technology",
-                                 @"science",
-                                 @"health",
-                                 @"sports",
-                                 @"arts",
-                                 @"fashion",
-                                 @"dining",
-                                 @"travel",
-                                 @"magazine",
-                                 @"realestate",
-                                 ];
-        
-        for (NSString *section in nytSections) {
-            NSString *urlString = [NSString stringWithFormat:@"http://api.nytimes.com/svc/topstories/v1/%@.json?api-key=388ce6e70d2a8e825757af7a0a67c397:13:59285541",section];
-            
-            NSURL *topStoryURL = [NSURL URLWithString:urlString];
-            
-            NSURLRequest *topStoriesRequest = [NSURLRequest requestWithURL:topStoryURL];
-            
-            [NSURLConnection sendAsynchronousRequest:topStoriesRequest
-                                               queue:[[NSOperationQueue alloc] init]
-                                   completionHandler:^(NSURLResponse *response,
-                                                       NSData *data,
-                                                       NSError *connectionError) {
-                                       if (connectionError) {
-                                           return;
-                                       }
-                                       
-                                       NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-                                       
-                                       NSArray *results = json[@"results"];
-                                       
-                                       [[RLMRealm defaultRealm] beginWriteTransaction];
-                                       for (NSDictionary *storyJSON in results) {
-                                           NYTStory *story = [NYTStory storyWithJSON:storyJSON];
-                                           
-                                           if (story) {
-                                               [[RLMRealm defaultRealm] addOrUpdateObjectWithNotification:story];
-                                           }
-                                       }
-                                       [[RLMRealm defaultRealm] commitWriteTransaction];
-                                   }];
-        }
-    });
+    [NYTStory loadLatestStoriesIntoRealm:[RLMRealm defaultRealm]
+                              withAPIKey:@"388ce6e70d2a8e825757af7a0a67c397:13:59285541"];
 }
 
 @end
