@@ -12,7 +12,7 @@ import RBQFetchedResultsController
 
 typealias UpdateBlock = () -> Void
 
-public class RealmGridController: UICollectionViewController, RBQFetchedResultsControllerDelegate {
+public class RealmGridController: UICollectionViewController {
     // MARK: Properties
     
     /// The name of the Realm Object managed by the grid controller
@@ -139,7 +139,7 @@ public class RealmGridController: UICollectionViewController, RBQFetchedResultsC
     
     private var internalConfiguration: Realm.Configuration?
     
-    public var fetchedResultsController: RBQFetchedResultsController!
+    private var fetchedResultsController: RBQFetchedResultsController!
     
     private var rlmSortDescriptors: [RLMSortDescriptor]?
     
@@ -238,6 +238,7 @@ extension RealmGridController {
         self.collectionViewLayout.invalidateLayout()
     }
 }
+
 extension RealmGridController {
     public override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return self.fetchedResultsController.numberOfSections()
@@ -248,7 +249,7 @@ extension RealmGridController {
     }
 }
 
-extension RealmGridController {
+extension RealmGridController: RBQFetchedResultsControllerDelegate {
     public func controllerWillChangeContent(controller: RBQFetchedResultsController) {
         self.updateBlocks = [UpdateBlock]()
     }
