@@ -15,7 +15,6 @@
 		A04B4BBC1B9A3723002B721F /* SwiftRealmGridControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04B4BBB1B9A3723002B721F /* SwiftRealmGridControllerTests.swift */; };
 		A056C9CF1BA10CB300CA7753 /* RealmGridController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A056C9CE1BA10CB300CA7753 /* RealmGridController.swift */; };
 		A0B4B7A01B9F624900AD569C /* MainCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B4B79F1B9F624900AD569C /* MainCollectionViewController.swift */; };
-		A0B4B7A21B9F628E00AD569C /* NYTStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B4B7A11B9F628E00AD569C /* NYTStory.swift */; };
 		E3331EA52957C9F102A46194 /* Pods_SwiftRealmGridControllerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E011EF7D028E48EA1ABEB41A /* Pods_SwiftRealmGridControllerTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -45,7 +44,6 @@
 		A04B4BBB1B9A3723002B721F /* SwiftRealmGridControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftRealmGridControllerTests.swift; sourceTree = "<group>"; };
 		A056C9CE1BA10CB300CA7753 /* RealmGridController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmGridController.swift; sourceTree = "<group>"; };
 		A0B4B79F1B9F624900AD569C /* MainCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCollectionViewController.swift; sourceTree = "<group>"; };
-		A0B4B7A11B9F628E00AD569C /* NYTStory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NYTStory.swift; sourceTree = "<group>"; };
 		DB4FE75FB6E584B7D90CF9F1 /* Pods_SwiftRealmGridController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftRealmGridController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E011EF7D028E48EA1ABEB41A /* Pods_SwiftRealmGridControllerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftRealmGridControllerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -107,7 +105,6 @@
 				A056C9CD1BA10CB300CA7753 /* RealmGridController */,
 				A04B4BA51B9A3723002B721F /* AppDelegate.swift */,
 				A0B4B79F1B9F624900AD569C /* MainCollectionViewController.swift */,
-				A0B4B7A11B9F628E00AD569C /* NYTStory.swift */,
 				A04B4BA91B9A3723002B721F /* Main.storyboard */,
 				A04B4BAC1B9A3723002B721F /* Images.xcassets */,
 				A04B4BAE1B9A3723002B721F /* LaunchScreen.xib */,
@@ -359,7 +356,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A0B4B7A21B9F628E00AD569C /* NYTStory.swift in Sources */,
 				A0B4B7A01B9F624900AD569C /* MainCollectionViewController.swift in Sources */,
 				A04B4BA61B9A3723002B721F /* AppDelegate.swift in Sources */,
 				A056C9CF1BA10CB300CA7753 /* RealmGridController.swift in Sources */,

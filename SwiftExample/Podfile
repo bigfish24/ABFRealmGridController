@@ -5,6 +5,7 @@ target 'SwiftRealmGridController' do
   pod 'SwiftFetchedResultsController'
   pod 'TOWebViewController'
   pod 'HanekeSwift'
+  pod 'RealmSwiftNYTStories'
 end
 
 target 'SwiftRealmGridControllerTests' do

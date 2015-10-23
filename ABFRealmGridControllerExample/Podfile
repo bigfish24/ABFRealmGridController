@@ -6,6 +6,7 @@ target 'ABFRealmGridControllerExample' do
   pod "RBQFetchedResultsController"
   pod 'TOWebViewController'
   pod 'Haneke', '~> 1.0'
+  pod 'RealmNYTStories'
 end
 
 target 'ABFRealmGridControllerExampleTests' do

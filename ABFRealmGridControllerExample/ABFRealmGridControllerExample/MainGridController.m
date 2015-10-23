@@ -8,10 +8,10 @@
 
 #import "MainGridController.h"
 #import "MainCollectionViewCell.h"
-#import "NYTStory.h"
 
 #import <TOWebViewController/TOWebViewController.h>
 #import <Haneke/Haneke.h>
+#import <RealmNYTStories/NYTStory.h>
 
 @interface MainGridController ()
 

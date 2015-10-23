@@ -8,7 +8,7 @@
 
 import UIKit
 import RealmSwift
-import RBQFetchedResultsController
+import SwiftFetchedResultsController
 
 typealias UpdateBlock = () -> Void
 

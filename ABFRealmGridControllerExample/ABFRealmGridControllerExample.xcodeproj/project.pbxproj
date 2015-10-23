@@ -17,8 +17,6 @@
 		A02C0D451B8CEF94009AD6CA /* ABFRealmGridController.m in Sources */ = {isa = PBXBuildFile; fileRef = A02C0D441B8CEF94009AD6CA /* ABFRealmGridController.m */; };
 		A02C0D531B8D22EA009AD6CA /* MainGridController.m in Sources */ = {isa = PBXBuildFile; fileRef = A02C0D521B8D22EA009AD6CA /* MainGridController.m */; };
 		A02C0D561B8D250E009AD6CA /* MainCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A02C0D551B8D250E009AD6CA /* MainCollectionViewCell.m */; };
-		A0A802591B98B49F002C7FF1 /* NYTStory.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A802581B98B49F002C7FF1 /* NYTStory.m */; };
-		A0A8025F1B98B4C4002C7FF1 /* NYTStoryImage.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A8025E1B98B4C4002C7FF1 /* NYTStoryImage.m */; };
 		DF2BE6AEA5EC1F2153FDF267 /* libPods-ABFRealmGridControllerExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 56500D994E7A1E49F12BAC53 /* libPods-ABFRealmGridControllerExample.a */; };
 /* End PBXBuildFile section */
 
@@ -52,10 +50,6 @@
 		A02C0D521B8D22EA009AD6CA /* MainGridController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainGridController.m; sourceTree = "<group>"; };
 		A02C0D541B8D250E009AD6CA /* MainCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainCollectionViewCell.h; sourceTree = "<group>"; };
 		A02C0D551B8D250E009AD6CA /* MainCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainCollectionViewCell.m; sourceTree = "<group>"; };
-		A0A802571B98B49F002C7FF1 /* NYTStory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYTStory.h; sourceTree = "<group>"; };
-		A0A802581B98B49F002C7FF1 /* NYTStory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYTStory.m; sourceTree = "<group>"; };
-		A0A8025D1B98B4C4002C7FF1 /* NYTStoryImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYTStoryImage.h; sourceTree = "<group>"; };
-		A0A8025E1B98B4C4002C7FF1 /* NYTStoryImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYTStoryImage.m; sourceTree = "<group>"; };
 		B3CA3BAF400613246CD82D16 /* Pods-ABFRealmGridControllerExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ABFRealmGridControllerExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ABFRealmGridControllerExample/Pods-ABFRealmGridControllerExample.debug.xcconfig"; sourceTree = "<group>"; };
 		C418968997C4066730847BE3 /* libPods-ABFRealmGridControllerExampleTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ABFRealmGridControllerExampleTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5E3DAB3F2E035A25B348B30 /* Pods-ABFRealmGridControllerExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ABFRealmGridControllerExampleTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ABFRealmGridControllerExampleTests/Pods-ABFRealmGridControllerExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -136,10 +130,6 @@
 				A02C0D521B8D22EA009AD6CA /* MainGridController.m */,
 				A02C0D541B8D250E009AD6CA /* MainCollectionViewCell.h */,
 				A02C0D551B8D250E009AD6CA /* MainCollectionViewCell.m */,
-				A0A802571B98B49F002C7FF1 /* NYTStory.h */,
-				A0A802581B98B49F002C7FF1 /* NYTStory.m */,
-				A0A8025D1B98B4C4002C7FF1 /* NYTStoryImage.h */,
-				A0A8025E1B98B4C4002C7FF1 /* NYTStoryImage.m */,
 			);
 			path = ABFRealmGridControllerExample;
 			sourceTree = "<group>";
@@ -379,13 +369,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A0A8025F1B98B4C4002C7FF1 /* NYTStoryImage.m in Sources */,
 				A02C0D221B8CDC93009AD6CA /* AppDelegate.m in Sources */,
 				A02C0D1F1B8CDC93009AD6CA /* main.m in Sources */,
 				A02C0D531B8D22EA009AD6CA /* MainGridController.m in Sources */,
 				A02C0D451B8CEF94009AD6CA /* ABFRealmGridController.m in Sources */,
 				A02C0D561B8D250E009AD6CA /* MainCollectionViewCell.m in Sources */,
-				A0A802591B98B49F002C7FF1 /* NYTStory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
