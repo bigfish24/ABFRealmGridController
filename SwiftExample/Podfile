@@ -2,7 +2,7 @@ use_frameworks!
 
 target 'SwiftRealmGridController' do
   pod 'RealmSwift', '>=0.96'
-  pod 'SwiftFetchedResultsController'
+  pod 'SwiftFetchedResultsController', '>=2.4.3'
   pod 'TOWebViewController'
   pod 'HanekeSwift'
   pod 'RealmSwiftNYTStories'
