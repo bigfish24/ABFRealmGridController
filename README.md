@@ -11,12 +11,12 @@ The example application displays the current top stories from the New York Times
 ![Grid of NYTimes Top Stories Backed By ABFRealmGridController](/images/ABFRealmGridController.gif?raw=true "Grid of NYTimes Top Stories Backed By ABFRealmGridController")
 
 ####Installation
-`ABFRealmTableViewController` is available through [CocoaPods](http://cocoapods.org). To install
+`ABFRealmGridController` is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 **Objective-C**
 ```
-pod 'ABFRealmTableViewController'
+pod 'ABFRealmGridController'
 ```
 
 **Swift**
@@ -26,14 +26,14 @@ pod 'RealmGridController'
 
 ####Demo
 
-Build and run/test the Example project in Xcode to see `ABFRealmTableViewController` in action. This project uses CocoaPods. If you don't have [CocoaPods](http://cocoapods.org/) installed, grab it with [sudo] gem install cocoapods.
+Build and run/test the Example project in Xcode to see `ABFRealmGridController` in action. This project uses CocoaPods. If you don't have [CocoaPods](http://cocoapods.org/) installed, grab it with [sudo] gem install cocoapods.
 
 **Objective-C**
 ```
-git clone https://github.com/bigfish24/ABFRealmTableViewController.git
-cd ABFRealmTableViewController/ABFRealmTableViewControllerExample
+git clone https://github.com/bigfish24/ABFRealmGridController.git
+cd ABFRealmGridController/ABFRealmGridControllerExample
 pod install
-open ABFRealmTableViewController.xcworkspace
+open ABFRealmGridController.xcworkspace
 ```
 
 **Swift**
