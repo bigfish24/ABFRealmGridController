@@ -19,8 +19,8 @@ DerivedData
 .DS_Store
 Podfile.lock
 Pods
-xcshareddata
 *.xcworkspace
+Carthage/
 
 # CocoaPods
 #
@@ -29,4 +29,3 @@ xcshareddata
 # http://guides.cocoapods.org/using/using-cocoapods.html#should-i-ignore-the-pods-directory-in-source-control
 #
 #Pods/
-Carthage/
