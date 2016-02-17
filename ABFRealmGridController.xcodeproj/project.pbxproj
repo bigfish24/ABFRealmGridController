@@ -15,6 +15,7 @@
 		2241948D1C74ADA900FB12AB /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 224194771C74AD0400FB12AB /* RealmSwift.framework */; };
 		2241948E1C74ADAB00FB12AB /* SwiftFetchedResultsController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 224194781C74AD0400FB12AB /* SwiftFetchedResultsController.framework */; };
 		2241948F1C74ADC900FB12AB /* RealmGridController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2241946C1C74AC5900FB12AB /* RealmGridController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		224194901C74B19E00FB12AB /* RealmGridController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224194721C74AC7500FB12AB /* RealmGridController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -228,6 +229,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				224194901C74B19E00FB12AB /* RealmGridController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,6 +338,7 @@
 				);
 				INFOPLIST_FILE = ABFRealmGridController/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.realm.ABFRealmGridController;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -356,6 +359,7 @@
 				);
 				INFOPLIST_FILE = ABFRealmGridController/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.realm.ABFRealmGridController;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -376,6 +380,7 @@
 				);
 				INFOPLIST_FILE = RealmGridController/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.realm.RealmGridController;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -396,6 +401,7 @@
 				);
 				INFOPLIST_FILE = RealmGridController/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.realm.RealmGridController;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -431,6 +437,7 @@
 				2241948B1C74AD8A00FB12AB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
