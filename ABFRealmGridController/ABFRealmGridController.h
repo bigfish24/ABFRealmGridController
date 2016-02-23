@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+//! Project version number for ABFRealmGridController.
+FOUNDATION_EXPORT double ABFRealmGridControllerVersionNumber;
+
+//! Project version string for ABFRealmGridController.
+FOUNDATION_EXPORT const unsigned char ABFRealmGridControllerVersionString[];
+
 @class RLMRealm, RLMRealmConfiguration, RBQFetchedResultsController;
 
 @interface ABFRealmGridController : UICollectionViewController
