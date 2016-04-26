@@ -157,7 +157,7 @@ public class RealmGridController: UICollectionViewController {
         objc_sync_enter(self)
         if let fetchRequest = self.tableFetchRequest(self.entityName, inRealm: self.rlmRealm, predicate:self.basePredicate) {
             
-            self.fetchedResultsController.updateFetchRequest(fetchRequest, sectionNameKeyPath: self.sectionNameKeyPath, andPeformFetch: true)
+            self.fetchedResultsController.updateFetchRequest(fetchRequest, sectionNameKeyPath: self.sectionNameKeyPath, andPerformFetch: true)
             
             if self.viewLoaded {
                 self.runOnMainThread({ [weak self] () -> Void in

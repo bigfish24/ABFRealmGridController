@@ -1,14 +1,14 @@
 use_frameworks!
 
 target 'SwiftRealmGridController' do
-  pod 'RealmSwift', '>=0.96'
-  pod 'SwiftFetchedResultsController', '>=2.4.3'
+  pod 'RealmSwift', '>=0.99'
+  pod 'SwiftFetchedResultsController', '>= 4.0'
   pod 'TOWebViewController'
   pod 'HanekeSwift'
-  pod 'RealmSwiftNYTStories'
+  pod 'RealmSwiftNYTStories', :git => 'https://github.com/DramaFever/RealmNYTStories.git'
 end
 
 target 'SwiftRealmGridControllerTests' do
-  pod 'RealmSwift', '>=0.96'
+  pod 'RealmSwift', '>=0.99'
 end
 
