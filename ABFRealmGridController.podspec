@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "ABFRealmGridController"
-  s.version      = "1.4.1"
+  s.version      = "1.5"
   s.summary      = "UICollectionViewController subclass that binds data in Realm"
   s.description  = <<-DESC
 UICollectionViewController subclass that adds data binding support for a Realm object model.
