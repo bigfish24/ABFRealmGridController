@@ -12,7 +12,7 @@ Swift UICollectionViewController subclass that adds data binding support for a R
   s.source       = { :git => "https://github.com/bigfish24/ABFRealmGridController.git", :tag => "v#{s.version}" }
   s.source_files  = "RealmGridController/*.{swift}"
   s.requires_arc = true
-  s.dependency "SwiftFetchedResultsController", ">= 2.4.1"
-  s.dependency "RealmSwift", ">= 0.96.0"
+  s.dependency "SwiftFetchedResultsController", ">= 4.0.3"
+  s.dependency "RealmSwift", ">= 0.100.0"
 
 end

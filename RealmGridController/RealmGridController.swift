@@ -87,6 +87,11 @@ public class RealmGridController: UICollectionViewController {
         return nil
     }
     
+    /// The underlying RBQFetchedResultsController
+    public var fetchedResultsController: RBQFetchedResultsController {
+        return internalFetchedResultsController
+    }
+    
     // MARK: Object Retrieval
     
     /**
@@ -127,8 +132,8 @@ public class RealmGridController: UICollectionViewController {
     }
     
     private func baseInit() {
-        self.fetchedResultsController = RBQFetchedResultsController()
-        self.fetchedResultsController.delegate = self
+        self.internalFetchedResultsController = RBQFetchedResultsController()
+        self.internalFetchedResultsController.delegate = self
     }
     
     // MARK: Private Functions
@@ -139,7 +144,7 @@ public class RealmGridController: UICollectionViewController {
     
     private var internalConfiguration: Realm.Configuration?
     
-    private var fetchedResultsController: RBQFetchedResultsController!
+    private var internalFetchedResultsController: RBQFetchedResultsController!
     
     private var rlmSortDescriptors: [RLMSortDescriptor]?
     
@@ -157,7 +162,7 @@ public class RealmGridController: UICollectionViewController {
         objc_sync_enter(self)
         if let fetchRequest = self.tableFetchRequest(self.entityName, inRealm: self.rlmRealm, predicate:self.basePredicate) {
             
-            self.fetchedResultsController.updateFetchRequest(fetchRequest, sectionNameKeyPath: self.sectionNameKeyPath, andPeformFetch: true)
+            self.fetchedResultsController.updateFetchRequest(fetchRequest, sectionNameKeyPath: self.sectionNameKeyPath, andPerformFetch: true)
             
             if self.viewLoaded {
                 self.runOnMainThread({ [weak self] () -> Void in
@@ -185,8 +190,8 @@ public class RealmGridController: UICollectionViewController {
     private func toRLMConfiguration(configuration: Realm.Configuration) -> RLMRealmConfiguration {
         let rlmConfiguration = RLMRealmConfiguration()
         
-        if (configuration.path != nil) {
-            rlmConfiguration.path = configuration.path
+        if (configuration.fileURL != nil) {
+            rlmConfiguration.fileURL = configuration.fileURL
         }
         
         if (configuration.inMemoryIdentifier != nil) {

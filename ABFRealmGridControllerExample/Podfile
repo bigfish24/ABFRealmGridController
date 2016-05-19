@@ -2,14 +2,14 @@
 # platform :ios, '6.0'
 
 target 'ABFRealmGridControllerExample' do
-  pod "Realm", '>=0.96'
-  pod "RBQFetchedResultsController"
+  pod "Realm", '>=0.100.0'
+  pod "RBQFetchedResultsController", '>=4.0.3'
   pod 'TOWebViewController'
   pod 'Haneke', '~> 1.0'
-  pod 'RealmNYTStories'
+  pod 'RealmNYTStories', '>=1.2'
 end
 
 target 'ABFRealmGridControllerExampleTests' do
-  pod 'Realm/Headers', '>=0.96'
+  pod 'Realm/Headers', '>=0.100.0'
 end
 

@@ -45,6 +45,10 @@ static NSString * const reuseIdentifier = @"MainCell";
     // Configure the cell
     NYTStory *story = [self objectAtIndexPath:indexPath];
     
+    if (!story) {
+        NSLog(@"No Story Found!");
+    }
+    
     cell.titleLabel.text = story.title;
     cell.dateLabel.text = [NYTStory stringFromDate:story.publishedDate];
     cell.excerptLabel.text = story.abstract;

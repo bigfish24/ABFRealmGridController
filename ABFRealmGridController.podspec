@@ -12,7 +12,7 @@ UICollectionViewController subclass that adds data binding support for a Realm o
   s.source       = { :git => "https://github.com/bigfish24/ABFRealmGridController.git", :tag => "v#{s.version}" }
   s.source_files  = "ABFRealmGridController/*.{h,m}"
   s.requires_arc = true
-  s.dependency "RBQFetchedResultsController", ">= 2.4.1"
-  s.dependency "Realm", ">= 0.96.0"
+  s.dependency "RBQFetchedResultsController", ">= 4.0.3"
+  s.dependency "Realm", ">= 0.100.0"
 
 end
