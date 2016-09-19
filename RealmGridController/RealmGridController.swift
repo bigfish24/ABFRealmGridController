@@ -12,25 +12,25 @@ import SwiftFetchedResultsController
 
 typealias UpdateBlock = () -> Void
 
-public class RealmGridController: UICollectionViewController {
+open class RealmGridController: UICollectionViewController {
     // MARK: Properties
     
     /// The name of the Realm Object managed by the grid controller
-    @IBInspectable public var entityName: String? {
+    @IBInspectable open var entityName: String? {
         didSet {
             self.updateFetchedResultsController()
         }
     }
     
     /// The section name key path used to create the sections. Can be nil if no sections.
-    @IBInspectable public var sectionNameKeyPath: String? {
+    @IBInspectable open var sectionNameKeyPath: String? {
         didSet {
             self.updateFetchedResultsController()
         }
     }
     
     /// The base predicet to to filter the Realm Objects on
-    public var basePredicate: NSPredicate? {
+    open var basePredicate: NSPredicate? {
         didSet {
             self.updateFetchedResultsController()
         }
@@ -39,7 +39,7 @@ public class RealmGridController: UICollectionViewController {
     /// Array of SortDescriptors
     ///
     /// http://realm.io/docs/cocoa/0.89.2/#ordering-results
-    public var sortDescriptors: [SortDescriptor]? {
+    open var sortDescriptors: [SortDescriptor]? {
         didSet {
             
             if let descriptors = self.sortDescriptors {
@@ -63,7 +63,7 @@ public class RealmGridController: UICollectionViewController {
     /// The configuration for the Realm in which the entity resides
     ///
     /// Default is [RLMRealmConfiguration defaultConfiguration]
-    public var realmConfiguration: Realm.Configuration? {
+    open var realmConfiguration: Realm.Configuration? {
         set {
             self.internalConfiguration = newValue
             
@@ -79,7 +79,7 @@ public class RealmGridController: UICollectionViewController {
     }
     
     /// The Realm in which the given entity resides in
-    public var realm: Realm? {
+    open var realm: Realm? {
         if let configuration = self.realmConfiguration {
             return try! Realm(configuration: configuration)
         }
@@ -87,20 +87,25 @@ public class RealmGridController: UICollectionViewController {
         return nil
     }
     
+    /// The underlying RBQFetchedResultsController
+    open var fetchedResultsController: RBQFetchedResultsController {
+        return internalFetchedResultsController
+    }
+    
     // MARK: Object Retrieval
     
     /**
-    Retrieve the RLMObject for a given index path
-    
-    :warning: Returned object is not thread-safe.
-    
-    :param: indexPath the index path of the object
-    
-    :returns: RLMObject
-    */
-    public func objectAtIndexPath<T: Object>(type: T.Type, indexPath: NSIndexPath) -> T? {
-        if let anObject: AnyObject = self.fetchedResultsController.objectAtIndexPath(indexPath) {
-            return unsafeBitCast(anObject, T.self)
+     Retrieve the RLMObject for a given index path
+     
+     :warning: Returned object is not thread-safe.
+     
+     :param: indexPath the index path of the object
+     
+     :returns: RLMObject
+     */
+    open func objectAtIndexPath<T: Object>(_ type: T.Type, indexPath: IndexPath) -> T? {
+        if let anObject: AnyObject = self.fetchedResultsController.object(at: indexPath) as AnyObject? {
+            return unsafeBitCast(anObject, to: T.self)
         }
         
         return nil
@@ -120,30 +125,28 @@ public class RealmGridController: UICollectionViewController {
         baseInit()
     }
     
-    override public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    override public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
         baseInit()
     }
     
-    private func baseInit() {
-        self.fetchedResultsController = RBQFetchedResultsController()
-        self.fetchedResultsController.delegate = self
+    fileprivate func baseInit() {
+        self.internalFetchedResultsController = RBQFetchedResultsController()
+        self.internalFetchedResultsController.delegate = self
     }
     
     // MARK: Private Functions
     
-    private var viewLoaded: Bool = false
+    fileprivate var updateBlocks = [UpdateBlock]()
     
-    private var updateBlocks = [UpdateBlock]()
+    fileprivate var internalConfiguration: Realm.Configuration?
     
-    private var internalConfiguration: Realm.Configuration?
+    fileprivate var internalFetchedResultsController: RBQFetchedResultsController!
     
-    private var fetchedResultsController: RBQFetchedResultsController!
+    fileprivate var rlmSortDescriptors: [RLMSortDescriptor]?
     
-    private var rlmSortDescriptors: [RLMSortDescriptor]?
-    
-    private var rlmRealm: RLMRealm? {
+    fileprivate var rlmRealm: RLMRealm? {
         if let realmConfiguration = self.realmConfiguration {
             let configuration = self.toRLMConfiguration(realmConfiguration)
             
@@ -153,26 +156,26 @@ public class RealmGridController: UICollectionViewController {
         return nil
     }
     
-    private func updateFetchedResultsController() {
+    fileprivate func updateFetchedResultsController() {
         objc_sync_enter(self)
         if let fetchRequest = self.tableFetchRequest(self.entityName, inRealm: self.rlmRealm, predicate:self.basePredicate) {
             
             self.fetchedResultsController.updateFetchRequest(fetchRequest, sectionNameKeyPath: self.sectionNameKeyPath, andPerformFetch: true)
             
-            if self.viewLoaded {
+            if self.isViewLoaded {
                 self.runOnMainThread({ [weak self] () -> Void in
                     self?.collectionView?.reloadData()
-                })
+                    })
             }
         }
         objc_sync_exit(self)
     }
     
-    private func tableFetchRequest(entityName: String?, inRealm realm: RLMRealm?, predicate: NSPredicate?) -> RBQFetchRequest? {
+    fileprivate func tableFetchRequest(_ entityName: String?, inRealm realm: RLMRealm?, predicate: NSPredicate?) -> RBQFetchRequest? {
         
         if entityName != nil && realm != nil {
             
-            let fetchRequest = RBQFetchRequest(entityName: entityName!, inRealm: realm!, predicate: predicate)
+            let fetchRequest = RBQFetchRequest(entityName: entityName!, in: realm!, predicate: predicate)
             
             fetchRequest.sortDescriptors = self.rlmSortDescriptors
             
@@ -182,11 +185,11 @@ public class RealmGridController: UICollectionViewController {
         return nil
     }
     
-    private func toRLMConfiguration(configuration: Realm.Configuration) -> RLMRealmConfiguration {
+    fileprivate func toRLMConfiguration(_ configuration: Realm.Configuration) -> RLMRealmConfiguration {
         let rlmConfiguration = RLMRealmConfiguration()
         
-        if (configuration.path != nil) {
-            rlmConfiguration.path = configuration.path
+        if (configuration.fileURL != nil) {
+            rlmConfiguration.fileURL = configuration.fileURL
         }
         
         if (configuration.inMemoryIdentifier != nil) {
@@ -199,22 +202,22 @@ public class RealmGridController: UICollectionViewController {
         return rlmConfiguration
     }
     
-    private func runOnMainThread(block: () -> Void) {
-        if NSThread.isMainThread() {
+    fileprivate func runOnMainThread(_ block: @escaping () -> Void) {
+        if Thread.isMainThread {
             block()
         }
         else {
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            DispatchQueue.main.async(execute: { () -> Void in
                 block()
             })
         }
     }
     
-    private func add(updateBlock: UpdateBlock) {
+    fileprivate func add(_ updateBlock: @escaping UpdateBlock) {
         self.updateBlocks.append(updateBlock)
     }
     
-    private func performUpdates() {
+    fileprivate func performUpdates() {
         for updateBlock in self.updateBlocks {
             updateBlock()
         }
@@ -222,52 +225,50 @@ public class RealmGridController: UICollectionViewController {
 }
 
 extension RealmGridController {
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         
         if self.entityName != nil {
             self.fetchedResultsController.performFetch()
         }
-        
-        self.viewLoaded = true
     }
     
-    override public func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+    override open func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
         
         self.collectionViewLayout.invalidateLayout()
     }
 }
 
 extension RealmGridController {
-    public override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    open override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return self.fetchedResultsController.numberOfSections()
     }
     
-    public override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.fetchedResultsController.numberOfRowsForSectionIndex(section)
+    open override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.fetchedResultsController.numberOfRows(forSectionIndex: section)
     }
 }
 
 extension RealmGridController: RBQFetchedResultsControllerDelegate {
-    public func controllerWillChangeContent(controller: RBQFetchedResultsController) {
+    public func controllerWillChangeContent(_ controller: RBQFetchedResultsController) {
         self.updateBlocks = [UpdateBlock]()
     }
     
-    public func controller(controller: RBQFetchedResultsController, didChangeSection section: RBQFetchedResultsSectionInfo, atIndex sectionIndex: UInt, forChangeType type: NSFetchedResultsChangeType) {
+    public func controller(_ controller: RBQFetchedResultsController, didChangeSection section: RBQFetchedResultsSectionInfo, at sectionIndex: UInt, for type: NSFetchedResultsChangeType) {
         
         if let collectionView = self.collectionView {
             
-            if type == NSFetchedResultsChangeType.Insert {
+            if type == NSFetchedResultsChangeType.insert {
                 self.add({ () -> Void in
-                    let insertedSection = NSIndexSet(index: Int(sectionIndex))
+                    let insertedSection = IndexSet(integer: Int(sectionIndex))
                     
                     collectionView.insertSections(insertedSection)
                 })
             }
-            else if type == NSFetchedResultsChangeType.Delete {
+            else if type == NSFetchedResultsChangeType.delete {
                 self.add({ () -> Void in
-                    let deletedSection = NSIndexSet(index: Int(sectionIndex))
+                    let deletedSection = IndexSet(integer: Int(sectionIndex))
                     
                     collectionView.deleteSections(deletedSection)
                 })
@@ -275,39 +276,39 @@ extension RealmGridController: RBQFetchedResultsControllerDelegate {
         }
     }
     
-    public func controller(controller: RBQFetchedResultsController, didChangeObject anObject: RBQSafeRealmObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+    public func controller(_ controller: RBQFetchedResultsController, didChange anObject: RBQSafeRealmObject, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         
         if let collectionView = self.collectionView {
             
-            if type == NSFetchedResultsChangeType.Insert {
+            if type == NSFetchedResultsChangeType.insert {
                 self.add({ () -> Void in
-                    collectionView.insertItemsAtIndexPaths([newIndexPath!])
+                    collectionView.insertItems(at: [newIndexPath!])
                 })
             }
-            else if type == NSFetchedResultsChangeType.Delete {
+            else if type == NSFetchedResultsChangeType.delete {
                 self.add({ () -> Void in
-                    collectionView.deleteItemsAtIndexPaths([indexPath!])
+                    collectionView.deleteItems(at: [indexPath!])
                 })
             }
-            else if type == NSFetchedResultsChangeType.Update {
+            else if type == NSFetchedResultsChangeType.update {
                 self.add({ () -> Void in
-                    collectionView.reloadItemsAtIndexPaths([indexPath!])
+                    collectionView.reloadItems(at: [indexPath!])
                 })
             }
-            else if type == NSFetchedResultsChangeType.Move {
+            else if type == NSFetchedResultsChangeType.move {
                 self.add({ () -> Void in
-                    collectionView.deleteItemsAtIndexPaths([indexPath!])
-                    collectionView.insertItemsAtIndexPaths([newIndexPath!])
+                    collectionView.deleteItems(at: [indexPath!])
+                    collectionView.insertItems(at: [newIndexPath!])
                 })
             }
         }
     }
     
-    public func controllerDidChangeContent(controller: RBQFetchedResultsController){
+    public func controllerDidChangeContent(_ controller: RBQFetchedResultsController){
         weak var weakSelf = self
         
         self.collectionView?.performBatchUpdates({ () -> Void in
             weakSelf?.performUpdates()
-        }, completion: nil)
+            }, completion: nil)
     }
 }
